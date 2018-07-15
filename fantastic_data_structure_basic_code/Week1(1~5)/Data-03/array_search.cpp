@@ -1,5 +1,5 @@
-//#define MY_SOL
-#define REF_SOL
+#define MY_SOL
+//#define REF_SOL
 
 #ifdef MY_SOL
 
