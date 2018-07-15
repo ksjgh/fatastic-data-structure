@@ -4,6 +4,11 @@
 void deleteData(int *ap, int *pcount, int index);
 void insertData(int *ap, int *pcount, int index, int data);
 void printArray(int *ap, int cnt);
+
+#define MY_SOL
+//#define REF_SOL
+
+#ifdef MY_SOL
 //---------------------------------------------------
 int main()
 {
@@ -20,6 +25,94 @@ int main()
 	return 0;
 }
 //---------------------------------------------------
+
+void insertData(int *ap, int *pcount, int index, int data)
+{
+    int i;
+    if(index<=*pcount){
+        for(i=*pcount;i>index;i--){
+            ap[i] = ap[i-1];
+        }
+        ap[index] = data;
+        (*pcount)++;
+    }
+    else {
+        return;
+    }
+//	int i;
+//	if (index <= *pcount) {
+//		for (i = *pcount; i > index; i--) {
+//			ap[i] = ap[i - 1];
+//		}
+//		ap[index] = data;
+//		(*pcount)++;
+//	}
+//	else {
+//		return;
+//	}
+}
+
+//---------------------------------------------------
+void deleteData(int *ap, int *pcount, int index)
+{
+    int i;
+
+
+    if(index<*pcount){
+        (*pcount)--;
+        // move array to left
+        for(i=index; i<*pcount;i++){
+            ap[i] = ap[i+1];
+        }
+        //decrease array size
+
+    }
+    else {
+        return;
+    }
+//	int i;
+//	if (index < *pcount) {
+//		(*pcount)--;
+//		for (i = index; i < *pcount; i++) {
+//			ap[i] = ap[i + 1];
+//		}
+//	}
+//	else {
+//		return;
+//	}
+}
+//---------------------------------------------------
+void printArray(int *ap, int cnt)
+{
+	int i;
+	printf("배열의 내용 : ");
+	for (i = 0; i < cnt; i++) {
+		printf("%5d", *ap++);
+	}
+	printf("\n");
+}
+#endif // MY_SOL
+
+
+
+#ifdef REF_SOL
+//---------------------------------------------------
+int main()
+{
+	int num[10] = {1,2,3,4,5,6,7};
+	int count=7;
+	printArray(num, count);
+	insertData(num, &count, 4, 9);
+	printArray(num, count);
+
+	deleteData(num, &count, 3);
+	printArray(num, count);
+
+	getchar();
+	return 0;
+}
+//---------------------------------------------------
+
 void insertData(int *ap, int *pcount, int index, int data)
 {
 	int i;
@@ -34,6 +127,7 @@ void insertData(int *ap, int *pcount, int index, int data)
 		return;
 	}
 }
+
 //---------------------------------------------------
 void deleteData(int *ap, int *pcount, int index)
 {
@@ -58,5 +152,7 @@ void printArray(int *ap, int cnt)
 	}
 	printf("\n");
 }
+#endif // REF_SOL
+
 
 
