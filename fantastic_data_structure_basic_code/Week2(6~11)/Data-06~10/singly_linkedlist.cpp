@@ -65,7 +65,7 @@ BOOL addLast(List *lp, int data)
 {
 	// TODO
 	Node* newp;
-	Node* btp; //before tail pointer?
+	Node* btp; //before tail pointer
 
 	if(lp==NULL) return FALSE;
 	newp = (Node*)malloc(sizeof(Node));
@@ -74,11 +74,14 @@ BOOL addLast(List *lp, int data)
         newp->data = data;
         newp->next = lp->tail;
 
+        //************************************
+        // find node before tail node
         btp = lp->head;
         while(btp->next != lp->tail){
             btp = btp->next;
         }
         btp->next = newp;
+        //************************************
 
         ++lp->size;
         return TRUE;
@@ -97,7 +100,17 @@ Returns			: 없음
 void displayList(List *lp)
 {
 	// TODO
+	if(lp == NULL) return;
 
+	Node* cp;
+
+	//************************************
+	cp = lp->head->next;
+	while(cp != lp->tail){
+        printf("%8d\n",cp->data);
+        cp = cp->next;
+	}
+	//************************************
 	return;
 }
 
@@ -110,6 +123,20 @@ Returns			: 성공 - 검색된 노드의 주소 / 실패 - NULL pointer
 Node * searchNode(List *lp, int data)
 {
 	// TODO
+	if(lp == NULL) return NULL;
+
+	Node* curp;
+	curp = lp->head->next;
+	while(curp != lp->tail){
+        if(curp->data == data ){
+            return curp;
+        }
+        else{
+            curp = curp->next;
+        }
+	}
+
+	return NULL;
 
 	//return 0; // return 값을 적절히 수정하세요.
 }
@@ -122,8 +149,25 @@ Returns			: 성공 - TRUE / 실패 - FALSE
 BOOL removeNode(List *lp, int data)
 {
 	// TODO
+	if(lp == NULL) return FALSE;
 
-	return TRUE; // return 값을 적절히 수정하세요.
+	Node* curp;
+	Node* rp;
+
+	rp = searchNode(lp, data);
+	if(rp==NULL){
+        return FALSE;
+	}
+	else{
+        curp = lp->head;
+        while(curp->next != rp){
+            curp = curp->next;
+        }
+        curp->next = rp->next;
+        free(rp);
+        --lp->size;
+        return TRUE;
+	}
 }
 /*----------------------------------------------------------------------------------
 Function name	: sortList - 노드 정렬(오름차순)
@@ -133,6 +177,8 @@ Returns			: 없음
 void sortList(List *lp)
 {
 	// TODO
+
+
 
 	return;
 }
