@@ -177,11 +177,26 @@ Returns			: 없음
 void sortList(List *lp)
 {
 	// TODO
+    Node* curp;
+    Node* nextp;
+    int temp;
+    if(lp==NULL) return;
 
-
-
-	return;
+    curp = lp->head->next;
+    while(curp->next != lp->tail ){
+        nextp = curp->next;
+        while(nextp != lp->tail){
+            if(curp->data > nextp->data){
+                temp = curp->data;
+                curp->data = nextp->data;
+                nextp->data = temp;
+            }
+            nextp = nextp->next;
+        }
+        curp = curp->next;
+    }
 }
+
 /*----------------------------------------------------------------------------------
 Function name	: destroyList - 리스트 내의 모든 노드(head, tail 노드 포함)를 삭제
 Parameters		: lp - 리스트 관리 구조체의 주소
@@ -190,8 +205,23 @@ Returns			: 없음
 void destroyList(List *lp)
 {
 	// TODO
+    Node* curp;
+    Node* nextp;
+    if(lp==NULL) return;
 
-	return;
+    curp = lp->head->next;
+    while(curp != lp->tail){
+        nextp = curp->next;
+        free(curp);
+        curp = nextp;
+    }
+
+    free(lp->head);
+    free(lp->tail);
+
+    lp->head = NULL;
+    lp->tail = NULL;
+    lp->size = 0;
 }
 #endif // MY_SOL
 
@@ -304,7 +334,3 @@ void destroyList(List *lp)
 	return;
 }
 #endif // REF_SOL
-
-
-
-
