@@ -1,17 +1,36 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "singlyLinkedlist.h"
+
 BOOL dataFileLoad(List *lp); // 데이터 파일내의 데이터를 리스트에 저장
 /*----------------------------------------------------------------------------------
   함수명 : main()
 ----------------------------------------------------------------------------------*/
+// int main()
+// {
+// 	// TODO
+
+// 	getchar();
+// 	return 0;
+// }
+
+// my solution
 int main()
 {
 	// TODO
+	List* lp;
+	lp = (List*)malloc(sizeof(List));
+	if(createList(lp))
+	{
+		dataFileLoad(lp);
+		//displayList(lp);
+	}
 
 	getchar();
 	return 0;
 }
+
 
 /*----------------------------------------------------------------------------------
   함수명 : dataFileLoad()
@@ -22,9 +41,13 @@ BOOL dataFileLoad(List *lp) // 데이터 파일내의 데이터를 리스트에 저장
 	char word[80];
 	Node *resp;
 
-	fp=fopen("d:\\data\\flower.txt", "rt");
+	// fp=fopen("..\\..\\Data_file\\flower.txt", "rt");
+	fp=fopen("flower.txt", "rt");
 	if(fp==NULL)
-		return FALSE;
+	{
+	    printf("File load error!");
+	    return FALSE;
+	}
 
 	while(fscanf(fp, "%s", word)!=EOF)
 	{
@@ -33,5 +56,6 @@ BOOL dataFileLoad(List *lp) // 데이터 파일내의 데이터를 리스트에 저장
 			addLast(lp, word);
 	}
 	fclose(fp);
+	printf("File sucessfuly loaded\n");
 	return TRUE;
 }

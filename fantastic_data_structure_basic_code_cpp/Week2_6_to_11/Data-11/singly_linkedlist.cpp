@@ -149,6 +149,7 @@ Parameters		: lp - 리스트 관리 구조체의 주소
 data - 삭제할 데이터
 Returns			: 성공 - TRUE / 실패 - FALSE
 ----------------------------------------------------------------------------------*/
+
 BOOL removeNode(List *lp, char *data)
 {
 	Node *delp;
@@ -173,6 +174,38 @@ BOOL removeNode(List *lp, char *data)
 		return FALSE;
 	}
 }
+
+// There is two while-loop in original answer 
+// one is  in searchNode()
+// We can implement this using just one while loop
+// BOOL removeNode( List* lp, char* data)
+// {
+//     Node* curp;
+//     Node* bcurp;
+
+//     if( lp == NULL )
+//         return FALSE;
+
+//     curp = lp->head->next;
+//     bcurp = lp->head;
+//     while( curp != lp->tail )
+//     {
+//         if( strcmp( curp->data, data ))
+//         {
+//             bcurp->next = curp->next;
+//             free(curp);
+//             --lp->size;
+//             return TRUE;
+//         }
+//         else
+//         {
+//             bcurp = curp;
+//             curp = curp->next;
+//         }        
+//     }
+//     return FALSE;    
+// }
+
 /*----------------------------------------------------------------------------------
 Function name	: sortList - 노드 정렬(오름차순)
 Parameters		: lp - 리스트 관리 구조체의 주소

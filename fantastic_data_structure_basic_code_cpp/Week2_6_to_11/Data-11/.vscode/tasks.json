@@ -13,7 +13,10 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": {
                 "fileLocation": [
                     "relative",
@@ -56,14 +59,29 @@
         {
             "label": "execute",
             "command": "cmd",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "args": [
                 "/C",
                 "${fileDirname}\\${fileBasenameNoExtension}"
             ]
+        },
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
         }
     ]
  }
