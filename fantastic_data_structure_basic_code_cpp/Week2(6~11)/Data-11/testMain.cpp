@@ -23,8 +23,10 @@ int main()
 	lp = (List*)malloc(sizeof(List));
 	if(createList(lp))
 	{
+	    //debug
+	    printf("new List is created\n");
 		dataFileLoad(lp);
-		//displayList(lp);
+		displayList(lp);
 	}
 
 	getchar();
