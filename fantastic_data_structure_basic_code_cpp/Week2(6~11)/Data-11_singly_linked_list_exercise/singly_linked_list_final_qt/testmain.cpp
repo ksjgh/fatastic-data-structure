@@ -93,7 +93,8 @@ BOOL dataFileLoad(List *lp) // 데이터 파일내의 데이터를 리스트에 저장
     char word[80];
     Node *resp;   
 
-    fp=fopen("D:\\temp\\singly_linked_list_final_qt\\flower.txt", "rt");
+//    fp=fopen("D:\\temp\\singly_linked_list_final_qt\\flower.txt", "rt");
+    fp=fopen("F:\\Data_sungjin\\01_Learning\\Programming\\Fantastic_Data_Structure\\fatastic-data-structure\\fantastic_data_structure_basic_code_cpp\\Week2(6~11)\\Data-11_singly_linked_list_exercise\\flower.txt", "rt");
 //    fp=fopen("flower.txt", "rt");
 
     if(fp==NULL)
